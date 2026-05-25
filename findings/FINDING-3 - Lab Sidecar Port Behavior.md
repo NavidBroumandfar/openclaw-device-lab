@@ -6,7 +6,11 @@ Sidecar containment could not be verified because forbidden real ports were alre
 
 ## Classification
 
-Blocked preflight, not a sidecar behavior confirmation.
+Partial pass with safety stop.
+
+## Rule Clarification
+
+Navid clarified that pre-existing listeners on reserved real-system ports `18789` and `18790` are allowed as background state. Their presence alone is not a stop condition. They remain out of scope, and the lab must not connect to them, stop them, kill them, inspect them deeply, reuse them, or modify anything related to them.
 
 ## Evidence Summary
 
@@ -20,41 +24,51 @@ Observed:
 
 Not observed:
 
-- The lab gateway was not started.
-- No lab-created sidecar was observed during EXP-2.
 - No device, pairing, pending approval, operator scope, stale request ID, or scope-upgrade behavior was observed.
+
+Clarified-rule re-run:
+
+- The lab gateway started on `19791`.
+- The lab gateway created one automatic browser-control sidecar listener.
+- The sidecar listener was loopback-only.
+- The lab gateway and sidecar listeners closed after manual shutdown.
+- A gateway status command surfaced reserved-port service/config details, so the experiment stopped before EXP-3.
 
 ## Interpretation
 
 The EXP-1 sidecar observation remains valid: a lab gateway run can create an automatic loopback sidecar.
 
-EXP-2 was intended to verify sidecar containment under the updated approval, but the preflight environment was already contaminated by listeners on forbidden real ports. Since those ports are hard boundaries, the lab cannot safely proceed without either a clarified approval or a clean preflight state.
+EXP-2 was intended to verify sidecar containment under the earlier approval. The preflight environment had listeners on reserved real-system ports. Under the clarified rule, that background state is acceptable as long as lab commands do not use or connect to those ports.
 
 ## Risk
 
-Continuing while forbidden real ports are active could make later listener classification ambiguous and could increase the risk of confusing lab-created gateway behavior with real-system OpenClaw runtime behavior.
+Continuing while reserved real-system ports are active requires strict attribution. Listener classification must focus only on the lab gateway process and its automatically created loopback sidecars, without inspecting or recording details about the reserved-port processes.
+
+Gateway service/status commands can surface reserved-port service/config details even when invoked with the lab profile and an explicit lab URL. Those commands are unsafe for this containment workflow while reserved-port listeners are active.
 
 ## Recommended Action
 
-Stop and ask Navid whether to:
+Continue only after updating the next runbook:
 
-- approve continuing lab-only gateway work while existing forbidden-port listeners remain untouched and out of scope, or
-- pause execution until forbidden ports `18789` and `18790` are no longer listening.
-
-No command should inspect or manipulate the processes behind those listeners without explicit approval.
+- Treat pre-existing reserved-port listeners as out-of-scope background state.
+- Do not connect to, stop, kill, inspect deeply, reuse, or modify anything on reserved real-system ports `18789` or `18790`.
+- Attribute only lab-created loopback listeners from the `oc-device-lab` foreground gateway process.
+- Avoid gateway service/status commands that inspect local service state while reserved real-system listeners are active.
 
 ## Confidence Level
 
-High that EXP-2 stopped before lab gateway startup.
+High that the first EXP-2 attempt stopped before lab gateway startup.
 
 High that forbidden real ports were occupied before the lab run.
 
-Low on sidecar containment result because containment was not tested in this run.
+High that the clarified-rule re-run created only loopback lab listeners for the main gateway and browser-control sidecar.
+
+Medium on the safe command path for later device lifecycle experiments because some gateway commands may inspect reserved-port service state.
 
 ## Safety Notes
 
-- No OpenClaw command was run during EXP-2.
-- No lab gateway was started.
+- OpenClaw commands used only profile `oc-device-lab`.
+- The lab gateway was started only in foreground mode on `19791`.
 - No real Second Brain or Nava state was touched.
 - No default profile was used.
 - No forbidden profile was used.

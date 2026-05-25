@@ -2,6 +2,8 @@
 
 Status: planning only.
 
+Updated rule: pre-existing listeners on reserved real-system ports `18789` and `18790` are allowed as background state. They must remain untouched and out of scope. Stop only if a lab command tries to use, connect to, modify, stop, kill, inspect deeply, or create listeners on those reserved ports.
+
 ## Purpose
 
 Determine how to keep the disposable lab gateway inside an explicitly approved port boundary before any device pairing or operator scope experiment runs.
@@ -43,7 +45,7 @@ Stop before any further OpenClaw command unless Navid approves one of:
 Stop if:
 
 - Any command would use default profile or a forbidden profile.
-- Any command would use a forbidden real port.
+- Any lab command would use, connect to, modify, stop, kill, inspect deeply, or create listeners on reserved real-system ports `18789` or `18790`.
 - Any command would inspect real tokens, logs, config, device IDs, request IDs, or runtime state.
 - Any command would install or modify services, autostart behavior, or LaunchAgents.
 - Any command would run setup, onboard, QR, doctor repair, or destructive device operations.

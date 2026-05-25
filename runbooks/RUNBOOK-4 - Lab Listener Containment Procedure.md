@@ -4,6 +4,8 @@
 
 Define the lab listener containment procedure after EXP-2 found pre-existing listeners on forbidden real ports before any lab gateway process started.
 
+Updated rule: pre-existing listeners on reserved real-system ports are allowed as background state. They must remain untouched and out of scope.
+
 ## Containment Rule
 
 The lab may use:
@@ -26,12 +28,13 @@ Before starting any future gateway:
 2. Run `scripts/lab-safety-check.sh`.
 3. Confirm git status is clean or only contains intentional lab notes.
 4. Confirm lab gateway port `19791` is free.
-5. Check whether forbidden real ports `18789` and `18790` are listening.
-6. If either forbidden real port is listening, stop unless Navid has explicitly approved continuing while those existing listeners remain untouched and out of scope.
+5. Treat any pre-existing listener on reserved real-system ports `18789` or `18790` as out-of-scope background state.
+6. Do not connect to, stop, kill, inspect deeply, reuse, or modify anything related to those reserved-port listeners.
 7. Start only a foreground lab gateway with profile `oc-device-lab` and loopback binding.
 8. Classify listeners at category level only.
 9. Confirm every lab-created listener is loopback-only.
-10. Stop the foreground gateway and confirm lab-created listeners are gone.
+10. Do not run gateway service/status commands that inspect local service state while reserved-port listeners are active.
+11. Stop the foreground gateway and confirm lab-created listeners are gone.
 
 ## Listener Classification Rules
 
@@ -41,12 +44,13 @@ Allowed to record:
 - Sidecar category, such as browser-control sidecar.
 - Whether each listener is loopback-only.
 - Whether listeners are created by the lab gateway process.
-- Whether forbidden real ports are absent or present at preflight.
+- Whether reserved real-system ports were treated as out-of-scope background state.
 
 Do not record:
 
 - Raw listener output.
 - Process IDs.
+- Reserved-port process details.
 - Full URLs.
 - Auth values.
 - Tokens.
@@ -61,7 +65,8 @@ Stop immediately if:
 
 - A listener binds outside loopback.
 - A forbidden real port is used by the lab gateway process.
-- A forbidden real port is active and no explicit approval exists to continue while leaving it untouched.
+- A lab command connects to, stops, kills, inspects deeply, reuses, or modifies reserved real-system ports `18789` or `18790`.
+- A lab command surfaces reserved-port service/config details.
 - Any command targets a forbidden profile or default profile.
 - Any output reveals real Second Brain/Nava state.
 - Any command attempts service, autostart, or LaunchAgent mutation.
@@ -70,9 +75,11 @@ Stop immediately if:
 
 ## Next Gate
 
-Before EXP-3 device pairing lifecycle work can run, the lab needs one of:
+Before EXP-3 device pairing lifecycle work can run, EXP-2 must confirm:
 
-- a clean preflight with no forbidden real ports listening, or
-- explicit Navid approval to continue lab-only work while pre-existing forbidden-port listeners remain untouched and out of scope.
+- The main lab gateway listener uses port `19791`.
+- Any automatic sidecar/listener created by the lab gateway process is loopback-only.
+- Reserved real-system ports `18789` and `18790` remain untouched and out of scope.
+- No service, autostart, or LaunchAgent action occurs.
 
-Without one of those, do not start the lab gateway or run device pairing experiments.
+If these pass but status-style commands surface reserved-port details, do not continue to EXP-3 until the command path is revised.

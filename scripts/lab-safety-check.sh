@@ -49,10 +49,10 @@ fi
 
 section "Forbidden Port References"
 port_hits="$(rg -n --hidden -g '!.git/**' -g '!scripts/lab-safety-check.sh' -- '18789|18790' . || true)"
-unsafe_port_hits="$(printf '%s\n' "$port_hits" | rg -v 'Avoid|Forbidden|forbidden|Ports |Do not|must not|no forbidden|forbidden ports|attempts to use|only as forbidden|boundary|hard boundaries|stop|fail|safety' || true)"
+unsafe_port_hits="$(printf '%s\n' "$port_hits" | rg -v 'Avoid|Forbidden|forbidden|Ports |Do not|must not|no forbidden|forbidden ports|reserved|out-of-scope|background state|untouched|attempts to use|only as forbidden|boundary|hard boundaries|stop|fail|safety' || true)"
 if [[ -n "$unsafe_port_hits" ]]; then
   printf '%s\n' "$unsafe_port_hits"
-  fail "forbidden port strings found outside obvious boundary text"
+  fail "reserved real-system port strings found outside obvious boundary text"
 elif [[ -n "$port_hits" ]]; then
   printf '%s\n' "$port_hits"
   pass "forbidden port strings appear only in boundary-style text"
@@ -61,7 +61,7 @@ else
 fi
 
 section "Forbidden Executable Command Contexts"
-command_hits="$(rg -n --hidden -g '!.git/**' --pcre2 '^\s*(openclaw|launchctl|systemctl|brew\s+services|osascript|plutil|pm2|npm\s+install|npx\s+openclaw)\b.*(--profile\s+(second-brain|main)|18789|18790|install|start|restart|LaunchAgent|autostart|doctor\s+--fix|onboard|setup|devices\s+(remove|rotate|clear))' . || true)"
+command_hits="$(rg -n --hidden -g '!.git/**' --pcre2 '^\s*(openclaw|launchctl|systemctl|brew\s+services|osascript|plutil|pm2|npm\s+install|npx\s+openclaw)\b.*(--profile\s+(second-brain|main)|18789|18790|install|start|restart|LaunchAgent|autostart|doctor\s+--fix|onboard|setup|gateway\s+status|devices\s+(remove|rotate|clear))' . || true)"
 if [[ -n "$command_hits" ]]; then
   printf '%s\n' "$command_hits"
   fail "forbidden command contexts found"

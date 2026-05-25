@@ -51,9 +51,11 @@ The Device Lab Agent must never touch:
 - Real Nava Telegram token, state, configuration, or logs
 - Real Second Brain configuration, state, logs, or tokens
 - Real OpenClaw runtime workspace
-- Ports 18789 or 18790
+- Ports 18789 or 18790 for any lab command, lab connection, lab listener, or lab-created sidecar
 
 These names and ports may appear in this repository only as explicit forbidden-boundary text.
+
+Pre-existing listeners on ports 18789 or 18790 are treated as reserved real-system background state. Their presence alone is not a stop condition, but the Device Lab Agent must not connect to them, stop them, kill them, inspect them deeply, reuse them, or modify anything related to them.
 
 ## Forbidden Real-System Targets
 
@@ -85,6 +87,7 @@ Stop work immediately if:
 - The current action would cross a hard boundary.
 - The agent cannot prove it is operating inside /Users/navidbr/Projects/openclaw-device-lab.
 - A command would use a forbidden profile, forbidden port, default profile, real token, real state, or real runtime workspace.
+- A lab command would connect to, create a listener on, or modify reserved real-system ports 18789 or 18790.
 - An experiment requires credentials or identity material that are not disposable lab assets.
 - An OpenClaw command would modify real devices, operators, approvals, or services.
 - The next step requires public posting or public PR creation.
@@ -100,6 +103,7 @@ Before committing, the Device Lab Agent must:
 - List the files created or modified.
 - Check that no lab files contain real tokens, real IDs, or real secrets.
 - Check that no executable instructions target forbidden profiles or forbidden ports.
+- Confirm reserved real-system ports 18789 and 18790 are referenced only as out-of-scope boundaries, not as lab targets.
 - Confirm no OpenClaw command was run unless an approved lab-only experiment explicitly required it.
 - Confirm no service, autostart, or LaunchAgent was installed or modified.
 

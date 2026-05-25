@@ -97,17 +97,13 @@ Expected output:
 
 ### Lab Gateway Status
 
-Candidate shape:
+Deprecated candidate: `gateway status` is no longer part of the safe baseline ladder while reserved real-system ports may be active.
 
-```bash
-openclaw --profile oc-device-lab gateway status --url ws://127.0.0.1:19791
-```
+Reason:
 
-Expected output:
-
-- Status indicates the lab gateway is reachable.
-- Status target is `ws://127.0.0.1:19791`.
-- No real profile, real token, or real runtime path appears.
+- A lab-profile `gateway status` command can inspect local service/config state and surface reserved-port details.
+- Reserved real-system listeners must remain out of scope.
+- Use direct listener classification and explicitly approved lab gateway calls instead.
 
 ### Lab Device List
 
