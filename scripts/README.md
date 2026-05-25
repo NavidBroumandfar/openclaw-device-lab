@@ -10,4 +10,5 @@ Current scripts:
 - `probe-lab-gateway.sh`: direct TCP/HTTP category probe for the lab gateway at `127.0.0.1:19791`.
 - `probe-lab-websocket-challenge.sh`: fixed-target WebSocket pre-connect challenge probe. It reads only the server-sent challenge category and sends no WebSocket JSON frame.
 - `probe-lab-signed-connect.sh`: fixed-target signed WebSocket `connect` probe using ephemeral in-memory identity and sanitized output only.
+- `probe-lab-approval-lifecycle.sh`: fixed-target approval lifecycle probe using one in-memory identity and sanitized output only.
 - `summarize-lab-device-state.sh`: sanitized count/category summarizer for disposable `oc-device-lab` device pairing state.

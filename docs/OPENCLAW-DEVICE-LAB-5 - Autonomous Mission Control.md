@@ -10,30 +10,25 @@ The lab must preserve Navid's real Second Brain/Nava environment untouched.
 
 ## Current Hypothesis
 
-The stale approval loop is likely tied to one or more of these gateway state transitions:
+The stale approval loop is reproduced in lab.
 
-- a client reconnects with a stable device identity but broader operator scopes;
-- the gateway supersedes the previous pending request and issues a new request ID;
-- approval, token reuse, or token rotation does not converge because the client keeps requesting a broader or mismatched role/scope contract;
-- broad CLI status/device surfaces may not be safe observation tools because they can consult service/default-port state.
+A stable device identity that changes its requested operator scope set while a previous scope-upgrade request is pending causes the gateway to supersede the old request and issue a replacement request ID. Approval of the old request fails as unknown. Approval of the current replacement request converges, and reconnect succeeds with the upgraded scope set.
 
-The immediate technical risk is that the first meaningful WebSocket `connect` frame can create or mutate pairing state, so WebSocket execution needs a source/docs plan before any protocol message is sent.
+Broad CLI status/device surfaces remain unsafe observation tools unless separately proven constrained, because earlier experiments showed they can consult service/default-port context.
 
 ## Active Experiment
 
-EXP-9 - Pending Approval Handling Plan.
+EXP-9 - Pending Approval and Stale Scope Request Result.
 
-Status: queued after EXP-8 pending pairing reproduction.
+Status: completed; mission milestone reached.
 
-Boundary: lab-only pending request created by EXP-8; no raw request ID printing; no broad status commands; no destructive cleanup without a dedicated cleanup artifact.
+Boundary: direct `127.0.0.1:19791` WebSocket probes, explicit `oc-device-lab` state root, in-memory disposable identity, no raw request ID/token/device identifier printing, no broad status commands, and no destructive cleanup without a dedicated cleanup artifact.
 
 ## Next Action Queue
 
-1. Create EXP-9 plan for pending approval handling.
-2. Determine whether direct lab RPC approval can select the sole pending request without printing its request ID.
-3. Avoid CLI `devices list --url` unless disposable credential handling is explicitly solved.
-4. Decide how to preserve or recreate disposable identity material for approval convergence testing.
-5. If approval cannot be safely executed, document the blocker and prepare cleanup plan for the pending lab request.
+1. Validate EXP-9 documentation and helper.
+2. Commit and push EXP-9 milestone.
+3. Optional next experiment: create a dedicated cleanup plan for disposable paired lab state.
 
 ## Completed Experiments
 
@@ -45,11 +40,12 @@ Boundary: lab-only pending request created by EXP-8; no raw request ID printing;
 - EXP-6 - WebSocket Challenge-Only Probe Result: confirmed `connect.challenge` is observable on `127.0.0.1:19791` without sending a client JSON frame; observed loopback sidecar and Bonjour advertisement side effect.
 - EXP-7 - Disposable Signed Connect Pairing Plan: planned an ephemeral signed-connect probe plus sanitized lab state summarizer; no signed connect executed yet.
 - EXP-8 - Disposable Signed Connect Pending Pairing Result: reproduced a pending `not-paired` device request in lab state using forwarded-header evidence and sanitized observation.
+- EXP-9 - Pending Approval and Stale Scope Request Result: reproduced stale scope-upgrade request supersession and confirmed replacement approval recovery.
 
 ## Current Blockers
 
-- Pending approval exists in disposable lab state and needs either approval handling or cleanup.
-- No approved pending-request approval path yet.
+- EXP-9 left one disposable paired operator device in `oc-device-lab` state. Cleanup is optional and needs a dedicated cleanup artifact before destructive action.
+- A shutdown PID listener verification command in EXP-9 was too broad and surfaced unrelated listener rows. Future verification should use only port-specific lab checks and narrow process identity checks.
 - `devices list` syntax has `--url`, but credential behavior is not proven clean enough for default observation.
 - Bonjour/mDNS advertisement appears during foreground gateway startup; disabling or accepting this side effect needs a documented decision before longer pairing runs.
 - Broad status commands remain disallowed until proven lab-contained.
@@ -70,12 +66,10 @@ Stop and ask Navid only if the next step would:
 
 ## Latest Commit
 
-Current HEAD before EXP-5 work: `5a5cbe4 test: discover direct lab gateway probe surface`.
+Latest commit pushed before EXP-9 documentation: `61bdd3c test: reproduce disposable pending pairing`.
 
-Latest commit pushed before EXP-8: `31500da test: plan signed connect pairing probe`.
-
-Latest local milestone not yet committed: EXP-8 pending pairing reproduction and script protocol negotiation fix.
+Latest local milestone not yet committed: EXP-9 stale scope request reproduction and recovery.
 
 ## Next Autonomous Step
 
-Validate, commit, and push EXP-8. Then plan EXP-9 for pending approval handling or cleanup.
+Validate, commit, and push EXP-9. Mission success outcome reached: stale operator scope approval behavior was reproduced in the disposable lab and a safe recovery workflow was documented.

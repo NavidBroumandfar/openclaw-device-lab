@@ -16,6 +16,7 @@ This index tracks accumulated OpenClaw Device Lab findings. Finding artifacts mu
 | [FINDING-6 - WebSocket Handshake Safety Gate](FINDING-6%20-%20WebSocket%20Handshake%20Safety%20Gate.md) | Confirmed source-level safety gate | Current | Reading the server-sent WebSocket challenge is non-mutating; sending `connect` can create or supersede pairing requests. |
 | [FINDING-7 - Challenge-Only WebSocket Probe](FINDING-7%20-%20Challenge-Only%20WebSocket%20Probe.md) | Confirmed lab-contained executable probe | Current | The lab gateway exposes a challenge-only WebSocket pre-connect surface on `127.0.0.1:19791`; no `connect` frame was sent. |
 | [FINDING-8 - Disposable Pending Pairing Reproduction](FINDING-8%20-%20Disposable%20Pending%20Pairing%20Reproduction.md) | Confirmed lab reproduction | Current | A forwarded-header loopback signed `connect` creates a disposable pending `not-paired` request without broad status commands. |
+| [FINDING-9 - Stale Scope Request Reproduction and Recovery](FINDING-9%20-%20Stale%20Scope%20Request%20Reproduction%20and%20Recovery.md) | Confirmed lab reproduction | Current | A stable disposable operator device can supersede a pending scope-upgrade request; stale approval fails as unknown, replacement approval converges. |
 
 ## Next Finding Slot
 
