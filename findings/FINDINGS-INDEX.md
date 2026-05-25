@@ -15,10 +15,11 @@ This index tracks accumulated OpenClaw Device Lab findings. Finding artifacts mu
 | [FINDING-5 - Direct Lab Gateway Probe Surface](FINDING-5%20-%20Direct%20Lab%20Gateway%20Probe%20Surface.md) | Confirmed safe preflight surface | Current | Direct TCP/HTTP status-code probes against `127.0.0.1:19791` are safe for reachability but do not expose pairing state. |
 | [FINDING-6 - WebSocket Handshake Safety Gate](FINDING-6%20-%20WebSocket%20Handshake%20Safety%20Gate.md) | Confirmed source-level safety gate | Current | Reading the server-sent WebSocket challenge is non-mutating; sending `connect` can create or supersede pairing requests. |
 | [FINDING-7 - Challenge-Only WebSocket Probe](FINDING-7%20-%20Challenge-Only%20WebSocket%20Probe.md) | Confirmed lab-contained executable probe | Current | The lab gateway exposes a challenge-only WebSocket pre-connect surface on `127.0.0.1:19791`; no `connect` frame was sent. |
+| [FINDING-8 - Disposable Pending Pairing Reproduction](FINDING-8%20-%20Disposable%20Pending%20Pairing%20Reproduction.md) | Confirmed lab reproduction | Current | A forwarded-header loopback signed `connect` creates a disposable pending `not-paired` request without broad status commands. |
 
 ## Next Finding Slot
 
-FINDING-8 is reserved for EXP-8 output if signed-connect execution reproduces first-time pending pairing or identifies a blocker.
+FINDING-9 is reserved for EXP-9 output if pending approval handling converges or exposes a blocker.
 
 ## Index Maintenance Rules
 

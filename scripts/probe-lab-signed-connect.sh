@@ -237,8 +237,8 @@ async function main() {
     id: "connect-redacted",
     method: "connect",
     params: {
-      minProtocol: 4,
-      maxProtocol: 4,
+      minProtocol: 1,
+      maxProtocol: 999,
       client,
       role,
       scopes,

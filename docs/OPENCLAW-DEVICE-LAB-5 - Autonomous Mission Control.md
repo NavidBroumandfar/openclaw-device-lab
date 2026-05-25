@@ -21,19 +21,19 @@ The immediate technical risk is that the first meaningful WebSocket `connect` fr
 
 ## Active Experiment
 
-EXP-7 - Disposable Signed-Connect Pairing Plan.
+EXP-9 - Pending Approval Handling Plan.
 
-Status: planned, pending validation and commit.
+Status: queued after EXP-8 pending pairing reproduction.
 
-Boundary: planning only until disposable identity, credential mode, pending-state observation, redaction, and cleanup are documented.
+Boundary: lab-only pending request created by EXP-8; no raw request ID printing; no broad status commands; no destructive cleanup without a dedicated cleanup artifact.
 
 ## Next Action Queue
 
-1. Validate `scripts/probe-lab-signed-connect.sh` and `scripts/summarize-lab-device-state.sh`.
-2. Commit and push EXP-7 planning and helper scripts.
-3. Run EXP-8 with the signed-connect probe only if validation passes and no hard stop appears.
-4. Document whether a pending `not-paired` request is created in disposable lab state.
-5. Decide whether to leave pending state for approval testing or create a lab-only cleanup artifact.
+1. Create EXP-9 plan for pending approval handling.
+2. Determine whether direct lab RPC approval can select the sole pending request without printing its request ID.
+3. Avoid CLI `devices list --url` unless disposable credential handling is explicitly solved.
+4. Decide how to preserve or recreate disposable identity material for approval convergence testing.
+5. If approval cannot be safely executed, document the blocker and prepare cleanup plan for the pending lab request.
 
 ## Completed Experiments
 
@@ -44,11 +44,13 @@ Boundary: planning only until disposable identity, credential mode, pending-stat
 - EXP-5 - WebSocket Handshake Source Review: proved challenge-only WebSocket probing is below the pairing state machine, while `connect` is pairing-relevant and must remain gated.
 - EXP-6 - WebSocket Challenge-Only Probe Result: confirmed `connect.challenge` is observable on `127.0.0.1:19791` without sending a client JSON frame; observed loopback sidecar and Bonjour advertisement side effect.
 - EXP-7 - Disposable Signed Connect Pairing Plan: planned an ephemeral signed-connect probe plus sanitized lab state summarizer; no signed connect executed yet.
+- EXP-8 - Disposable Signed Connect Pending Pairing Result: reproduced a pending `not-paired` device request in lab state using forwarded-header evidence and sanitized observation.
 
 ## Current Blockers
 
-- No signed `connect` execution plan yet.
-- No safe pending-device observation path yet; `devices list` syntax has `--url`, but credential behavior is not proven clean enough.
+- Pending approval exists in disposable lab state and needs either approval handling or cleanup.
+- No approved pending-request approval path yet.
+- `devices list` syntax has `--url`, but credential behavior is not proven clean enough for default observation.
 - Bonjour/mDNS advertisement appears during foreground gateway startup; disabling or accepting this side effect needs a documented decision before longer pairing runs.
 - Broad status commands remain disallowed until proven lab-contained.
 - Public posting remains approval-gated.
@@ -70,10 +72,10 @@ Stop and ask Navid only if the next step would:
 
 Current HEAD before EXP-5 work: `5a5cbe4 test: discover direct lab gateway probe surface`.
 
-Latest commit pushed: `d1b7b5d test: confirm websocket challenge probe`.
+Latest commit pushed before EXP-8: `31500da test: plan signed connect pairing probe`.
 
-Latest local milestone not yet committed: EXP-7 signed-connect plan and helper scripts.
+Latest local milestone not yet committed: EXP-8 pending pairing reproduction and script protocol negotiation fix.
 
 ## Next Autonomous Step
 
-Validate, commit, and push EXP-7. Then run EXP-8 signed-connect pending-request reproduction if the scripts and safety checks pass.
+Validate, commit, and push EXP-8. Then plan EXP-9 for pending approval handling or cleanup.
