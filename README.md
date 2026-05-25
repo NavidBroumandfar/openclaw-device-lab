@@ -38,6 +38,6 @@ The lab protects the real Second Brain and Nava setup by requiring:
 
 ## Current Status
 
-Setup only. No experiments have been run yet.
+Active autonomous lab.
 
-The initial repository structure, project charter, operating model, and experiment backlog are being established before any OpenClaw command is executed.
+EXP-1 through EXP-6 have established the disposable gateway baseline, constrained unsafe broad status surfaces, confirmed direct TCP/HTTP reachability probes, and confirmed a WebSocket challenge-only pre-connect probe. Signed `connect`, pending approval, operator scope upgrade, and stale request reproduction remain gated on a disposable identity and observation plan.
