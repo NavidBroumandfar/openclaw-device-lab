@@ -18,7 +18,7 @@ This index tracks accumulated OpenClaw Device Lab findings. Finding artifacts mu
 
 ## Next Finding Slot
 
-FINDING-8 is reserved for EXP-7 output if signed-connect planning identifies a safe pairing reproduction path or a blocker.
+FINDING-8 is reserved for EXP-8 output if signed-connect execution reproduces first-time pending pairing or identifies a blocker.
 
 ## Index Maintenance Rules
 
