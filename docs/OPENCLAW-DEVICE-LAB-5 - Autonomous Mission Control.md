@@ -8,7 +8,7 @@ Autonomously investigate, reproduce, and document OpenClaw device identity, gate
 
 The lab must preserve Navid's real Second Brain/Nava environment untouched.
 
-Current mission status: lab reproduction and recovery milestone reached. The active work is now documentation and approval-gated real recovery planning.
+Current mission status: lab reproduction, recovery, and contribution review milestones reached. The active recommendation is no public contribution yet because current upstream docs and source already cover the core stale request supersession behavior.
 
 ## Current Hypothesis
 
@@ -20,18 +20,19 @@ Broad CLI status/device surfaces remain unsafe observation tools unless separate
 
 ## Active Experiment
 
-REAL-RECOVERY-1 - Apply Lab Pattern to Second Brain Approval Plan.
+CONTRIB-1 - PR Opportunity Review.
 
-Status: plan only, not approved, not executed.
+Status: completed. Public contribution not recommended yet.
 
-Boundary: documentation inside `/Users/navidbr/Projects/openclaw-device-lab` only. No real `second-brain` profile commands, real Nava Telegram state, real Second Brain files, reserved real-system ports, services, autostart, LaunchAgents, setup, onboarding, QR, doctor repair, public posting, or raw private identifiers.
+Boundary: documentation and read-only public review only. No real `second-brain` profile commands, real Nava Telegram state, real Second Brain files, reserved real-system ports, services, autostart, LaunchAgents, setup, onboarding, QR, doctor repair, public posting, or raw private identifiers.
 
 ## Next Action Queue
 
-1. Navid reviews `experiments/REAL-RECOVERY-1 - Apply Lab Pattern to Second Brain Approval Plan.md`.
-2. If Navid approves, run a separate real-profile recovery session under that plan.
-3. Optional later lab cleanup: create a dedicated cleanup plan for disposable paired lab state.
-4. Optional public contribution: prepare issue/docs material only after Navid approval.
+1. Validate, commit, and push CONTRIB-1 artifacts.
+2. Navid reviews `contrib/CONTRIB-1 - PR Opportunity Review.md` and `findings/FINDING-11 - Contribution Opportunity Ranking.md`.
+3. Keep public posting closed unless a fresh latest-version repro or a specific non-duplicative docs/CLI gap appears.
+4. Optional later lab cleanup: create a dedicated cleanup plan for disposable paired lab state.
+5. Optional later real recovery: Navid reviews `experiments/REAL-RECOVERY-1 - Apply Lab Pattern to Second Brain Approval Plan.md` and explicitly approves a separate real-profile session.
 
 ## Completed Experiments
 
@@ -44,6 +45,7 @@ Boundary: documentation inside `/Users/navidbr/Projects/openclaw-device-lab` onl
 - EXP-7 - Disposable Signed Connect Pairing Plan: planned an ephemeral signed-connect probe plus sanitized lab state summarizer; no signed connect executed yet.
 - EXP-8 - Disposable Signed Connect Pending Pairing Result: reproduced a pending `not-paired` device request in lab state using forwarded-header evidence and sanitized observation.
 - EXP-9 - Pending Approval and Stale Scope Request Result: reproduced stale scope-upgrade request supersession and confirmed replacement approval recovery.
+- CONTRIB-1 - PR Opportunity Review: compared the lab-proven pattern against current public docs, issues, and upstream source; found no serious public contribution path yet.
 
 ## Success Milestone Reached
 
@@ -81,10 +83,10 @@ Stop and ask Navid only if the next step would:
 
 ## Public Contribution Status
 
-Public contribution status: not yet.
+Public contribution status: no-go for now.
 
-The lab now has contribution-worthy evidence, but no public GitHub issue, pull request, discussion, or comment has been published.
+The lab has credible evidence, but current public docs and source already cover stale request ID supersession, exact-current-request approval, and same-device replacement recovery. No public GitHub issue, pull request, discussion, or comment has been published.
 
 ## Next Autonomous Step
 
-Validate, commit, and push the documentation/planning update. The next human action is Navid review of the real recovery approval plan.
+Validate, commit, and push the CONTRIB-1 documentation update. The next human action is Navid review of the contribution no-go recommendation and, separately, the real recovery approval plan if desired.
