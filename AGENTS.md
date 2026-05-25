@@ -57,6 +57,8 @@ These names and ports may appear in this repository only as explicit forbidden-b
 
 Pre-existing listeners on ports 18789 or 18790 are treated as reserved real-system background state. Their presence alone is not a stop condition, but the Device Lab Agent must not connect to them, stop them, kill them, inspect them deeply, reuse them, or modify anything related to them.
 
+Broad status command surfaces are also gated. The Device Lab Agent must not run gateway service status, native status, or similarly broad local service diagnosis commands unless a prior documented help/docs review proves the command can target only profile oc-device-lab and gateway port 19791 without consulting service/default-port state.
+
 ## Forbidden Real-System Targets
 
 The Device Lab Agent must never perform real-system actions against:
@@ -88,6 +90,7 @@ Stop work immediately if:
 - The agent cannot prove it is operating inside /Users/navidbr/Projects/openclaw-device-lab.
 - A command would use a forbidden profile, forbidden port, default profile, real token, real state, or real runtime workspace.
 - A lab command would connect to, create a listener on, or modify reserved real-system ports 18789 or 18790.
+- A broad status or service-inspection command would consult default-port or reserved-port state.
 - An experiment requires credentials or identity material that are not disposable lab assets.
 - An OpenClaw command would modify real devices, operators, approvals, or services.
 - The next step requires public posting or public PR creation.

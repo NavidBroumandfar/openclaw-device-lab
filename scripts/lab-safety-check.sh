@@ -61,7 +61,7 @@ else
 fi
 
 section "Forbidden Executable Command Contexts"
-command_hits="$(rg -n --hidden -g '!.git/**' --pcre2 '^\s*(openclaw|launchctl|systemctl|brew\s+services|osascript|plutil|pm2|npm\s+install|npx\s+openclaw)\b.*(--profile\s+(second-brain|main)|18789|18790|install|start|restart|LaunchAgent|autostart|doctor\s+--fix|onboard|setup|gateway\s+status|devices\s+(remove|rotate|clear))' . || true)"
+command_hits="$(rg -n --hidden -g '!.git/**' --pcre2 '^\s*(openclaw|launchctl|systemctl|brew\s+services|osascript|plutil|pm2|npm\s+install|npx\s+openclaw)\b.*(--profile\s+(second-brain|main)|18789|18790|install|start|restart|LaunchAgent|autostart|doctor\s+--fix|onboard|setup|gateway\s+status|\sstatus(\s|$)|devices\s+(remove|rotate|clear))' . || true)"
 if [[ -n "$command_hits" ]]; then
   printf '%s\n' "$command_hits"
   fail "forbidden command contexts found"

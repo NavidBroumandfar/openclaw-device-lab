@@ -14,14 +14,16 @@ An acceptable approval must explicitly say yes to this exact lab-only session.
 
 The approved session, if granted, must run as one bounded session with notes captured after each step.
 
+Update: this original ladder is superseded by RUNBOOK-5 for command selection. Broad gateway/native status checks are not allowed unless a later documented review proves they are constrained to profile `oc-device-lab` and port `19791` without service/default-port introspection.
+
 1. Confirm current directory is `/Users/navidbr/Projects/openclaw-device-lab`.
 2. Confirm git status is clean or only contains intentional lab notes.
 3. Confirm port `19791` is not listening.
 4. Confirm OpenClaw CLI version and help output.
 5. Confirm the installed CLI supports a foreground gateway command that can target profile `oc-device-lab` and port `19791`.
 6. Start the lab gateway in the foreground using only profile `oc-device-lab` and port `19791`.
-7. In a separate shell, check lab gateway status against `ws://127.0.0.1:19791`.
-8. Check lab devices list against `ws://127.0.0.1:19791`.
+7. In a separate shell, classify lab-created loopback listeners without broad service/status commands.
+8. Use only lab-contained command surfaces allowed by RUNBOOK-5.
 9. Stop the foreground gateway from the same session that started it.
 10. Confirm port `19791` is no longer listening.
 11. Write sanitized experiment notes.
