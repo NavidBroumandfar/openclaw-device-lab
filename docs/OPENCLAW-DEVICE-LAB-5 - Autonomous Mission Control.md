@@ -8,9 +8,11 @@ Autonomously investigate, reproduce, and document OpenClaw device identity, gate
 
 The lab must preserve Navid's real Second Brain/Nava environment untouched.
 
+Current mission status: lab reproduction and recovery milestone reached. The active work is now documentation and approval-gated real recovery planning.
+
 ## Current Hypothesis
 
-The stale approval loop is reproduced in lab.
+The stale approval loop is reproduced and recovered in lab.
 
 A stable device identity that changes its requested operator scope set while a previous scope-upgrade request is pending causes the gateway to supersede the old request and issue a replacement request ID. Approval of the old request fails as unknown. Approval of the current replacement request converges, and reconnect succeeds with the upgraded scope set.
 
@@ -18,17 +20,18 @@ Broad CLI status/device surfaces remain unsafe observation tools unless separate
 
 ## Active Experiment
 
-EXP-9 - Pending Approval and Stale Scope Request Result.
+REAL-RECOVERY-1 - Apply Lab Pattern to Second Brain Approval Plan.
 
-Status: completed; mission milestone reached.
+Status: plan only, not approved, not executed.
 
-Boundary: direct `127.0.0.1:19791` WebSocket probes, explicit `oc-device-lab` state root, in-memory disposable identity, no raw request ID/token/device identifier printing, no broad status commands, and no destructive cleanup without a dedicated cleanup artifact.
+Boundary: documentation inside `/Users/navidbr/Projects/openclaw-device-lab` only. No real `second-brain` profile commands, real Nava Telegram state, real Second Brain files, reserved real-system ports, services, autostart, LaunchAgents, setup, onboarding, QR, doctor repair, public posting, or raw private identifiers.
 
 ## Next Action Queue
 
-1. Validate EXP-9 documentation and helper.
-2. Commit and push EXP-9 milestone.
-3. Optional next experiment: create a dedicated cleanup plan for disposable paired lab state.
+1. Navid reviews `experiments/REAL-RECOVERY-1 - Apply Lab Pattern to Second Brain Approval Plan.md`.
+2. If Navid approves, run a separate real-profile recovery session under that plan.
+3. Optional later lab cleanup: create a dedicated cleanup plan for disposable paired lab state.
+4. Optional public contribution: prepare issue/docs material only after Navid approval.
 
 ## Completed Experiments
 
@@ -41,6 +44,18 @@ Boundary: direct `127.0.0.1:19791` WebSocket probes, explicit `oc-device-lab` st
 - EXP-7 - Disposable Signed Connect Pairing Plan: planned an ephemeral signed-connect probe plus sanitized lab state summarizer; no signed connect executed yet.
 - EXP-8 - Disposable Signed Connect Pending Pairing Result: reproduced a pending `not-paired` device request in lab state using forwarded-header evidence and sanitized observation.
 - EXP-9 - Pending Approval and Stale Scope Request Result: reproduced stale scope-upgrade request supersession and confirmed replacement approval recovery.
+
+## Success Milestone Reached
+
+EXP-9 confirmed the recovery pattern in disposable lab state:
+
+- stale scope-upgrade request supersession was reproduced;
+- stale approval returned `unknown-request`;
+- the replacement pending request was approved;
+- reconnect succeeded with `operator.pairing,operator.read`;
+- active pending count returned to 0.
+
+RUNBOOK-9 and FINDING-10 convert this evidence into a reusable lab-proven recovery pattern.
 
 ## Current Blockers
 
@@ -64,12 +79,12 @@ Stop and ask Navid only if the next step would:
 - require storing raw tokens, request IDs, device IDs, auth values, raw logs, raw payloads, or private identifiers in tracked files;
 - require changing real OpenClaw installation/state outside this lab.
 
-## Latest Commit
+## Public Contribution Status
 
-Latest commit pushed before EXP-9 documentation: `61bdd3c test: reproduce disposable pending pairing`.
+Public contribution status: not yet.
 
-Latest local milestone not yet committed: EXP-9 stale scope request reproduction and recovery.
+The lab now has contribution-worthy evidence, but no public GitHub issue, pull request, discussion, or comment has been published.
 
 ## Next Autonomous Step
 
-Validate, commit, and push EXP-9. Mission success outcome reached: stale operator scope approval behavior was reproduced in the disposable lab and a safe recovery workflow was documented.
+Validate, commit, and push the documentation/planning update. The next human action is Navid review of the real recovery approval plan.

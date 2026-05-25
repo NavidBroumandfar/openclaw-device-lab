@@ -17,10 +17,11 @@ This index tracks accumulated OpenClaw Device Lab findings. Finding artifacts mu
 | [FINDING-7 - Challenge-Only WebSocket Probe](FINDING-7%20-%20Challenge-Only%20WebSocket%20Probe.md) | Confirmed lab-contained executable probe | Current | The lab gateway exposes a challenge-only WebSocket pre-connect surface on `127.0.0.1:19791`; no `connect` frame was sent. |
 | [FINDING-8 - Disposable Pending Pairing Reproduction](FINDING-8%20-%20Disposable%20Pending%20Pairing%20Reproduction.md) | Confirmed lab reproduction | Current | A forwarded-header loopback signed `connect` creates a disposable pending `not-paired` request without broad status commands. |
 | [FINDING-9 - Stale Scope Request Reproduction and Recovery](FINDING-9%20-%20Stale%20Scope%20Request%20Reproduction%20and%20Recovery.md) | Confirmed lab reproduction | Current | A stable disposable operator device can supersede a pending scope-upgrade request; stale approval fails as unknown, replacement approval converges. |
+| [FINDING-10 - Lab-Proven Recovery Pattern Summary](FINDING-10%20-%20Lab-Proven%20Recovery%20Pattern%20Summary.md) | Confirmed lab recovery pattern | Current | Approving the current replacement scope-upgrade request resolves stale request supersession in the disposable lab. |
 
 ## Next Finding Slot
 
-FINDING-9 is reserved for EXP-9 output if pending approval handling converges or exposes a blocker.
+FINDING-11 is reserved for the next lab-only finding or a separately approved real-profile result summary.
 
 ## Index Maintenance Rules
 
