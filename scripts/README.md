@@ -7,3 +7,4 @@ They must not run OpenClaw commands, create profiles, start gateways, install se
 Current scripts:
 
 - `lab-safety-check.sh`: static repository safety scan for future/manual use.
+- `probe-lab-gateway.sh`: direct TCP/HTTP category probe for the lab gateway at `127.0.0.1:19791`.

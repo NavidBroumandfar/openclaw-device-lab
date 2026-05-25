@@ -77,4 +77,4 @@ If any output reveals a real-system path or identifier, stop immediately and do 
 
 If Navid approves, the next experiment to run is EXP-1: Disposable Profile and Foreground Gateway Plan.
 
-The first execution should stop after confirming gateway status and devices list. It should not proceed into pairing lifecycle, scope upgrade, stale request ID, or token drift reproduction until a later approval gate.
+The first execution should stop after confirming lab-contained listener and direct-probe behavior. It should not proceed into pairing lifecycle, scope upgrade, stale request ID, or token drift reproduction until a later approval gate.
